@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.viewmodel.CreationExtras;
 
 import android.view.MenuInflater;
 import android.view.View;
@@ -42,9 +43,22 @@ public class MainActivity extends AppCompatActivity {
             case R.id.Siguiente:
                 startActivity(botonMenu);
                 return true;
+            case R.id.Registro:
+                recogerDatosRegistro();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    public void recogerDatosRegistro(){
+        EditText usuario = (EditText) findViewById(R.id.usuario);
+        EditText pass = (EditText) findViewById(R.id.contraseña);
+        Intent botonMenu = new Intent(this, Main2.class);
+
+        botonMenu.putExtra("usuario",usuario.getText().toString());
+        botonMenu.putExtra("pass",pass.getText().toString());
+
+        startActivity(botonMenu);
     }
 }
 
